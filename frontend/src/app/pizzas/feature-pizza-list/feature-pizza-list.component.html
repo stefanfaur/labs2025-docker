@@ -1,0 +1,22 @@
+<div id="pizzas" class="container my-5">
+
+  <h2> Pizza List </h2>
+
+  <div class="d-flex flex-row flex-wrap">
+    @for (pizza of pizzas(); track pizza.name) {
+
+      <div class="card m-2" style="width: 300px">
+
+        <app-pizza-card [pizza]="pizza"></app-pizza-card>
+
+        <div class="p-3">
+          <button class="btn btn-primary mt-3" (click)="editClicked(pizza)">Edit</button>
+          <ng-container *appIfPermission>
+            <button class="btn btn-primary mt-3 ms-1" appDeleteRed (click)="deleteClicked(pizza)">Delete</button>
+          </ng-container>
+        </div>
+      </div>
+
+    }
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.hottest-section{
+  background: #e74c3c;
+
+  * {
+    color: white;
+  }
+
+
+}
+
+
+.rounded{
+  width: 200px;
+  height: 200px;
+  border-radius: 50% !important;
+  overflow: hidden;
+  display: inline-block;
+  border: 6px solid white;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

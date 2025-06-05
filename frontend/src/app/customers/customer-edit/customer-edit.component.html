@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+    <form
+      #customerForm="ngForm"
+      (ngSubmit)="onSubmit(customerForm)"
+      class="mb-xl-5 pb-xl-5"
+    >
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input name="firstName" type="text" class="form-control" id="firstName" #firstNameControl="ngModel" matInput
+                 [ngModel]="customerDetails().firstName" (ngModelChange)="firstNameChanged($event)" required
+                 minlength="3" maxlength="45">
+
+          @if (customerForm.submitted && firstNameControl.errors) {
+            <mat-error>
+              {{ firstNameControl.errors['required'] ? 'First Name is required' : '' }}
+              {{ firstNameControl.errors['minlength'] ? 'First Name is too short' : '' }}
+              {{ firstNameControl.errors['maxlength'] ? 'First Name is too long' : '' }}
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input name="lastName" class="form-control" id="lastName" required minlength="3" matInput
+                 maxlength="255" #lastNameControl="ngModel" [ngModel]="customerDetails().lastName"
+                 (ngModelChange)="lastNameChanged($event)">
+
+          @if (customerForm.submitted && lastNameControl.errors) {
+            <mat-error>
+              {{ lastNameControl.errors['required'] ? 'Last Name is required' : '' }}
+              {{ lastNameControl.errors['minlength'] ? 'Last Name is too short' : '' }}
+              {{ lastNameControl.errors['maxlength'] ? 'Last Name is too long' : '' }}
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input name="age" type="number" class="form-control" id="age" [ngModel]="customerDetails().age" matInput
+                 (ngModelChange)="ageChanged($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input name="city" class="form-control" id="city" required matInput
+                 #cityControl="ngModel" [ngModel]="customerDetails().city"
+                 (ngModelChange)="cityChanged($event)"
+                 [matAutocomplete]="cityAutocomplete"/>
+
+          <mat-autocomplete #cityAutocomplete="matAutocomplete">
+            @for (city of filteredCities(); track city) {
+              <mat-option [value]="city">
+                {{ city }}
+              </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div class="mb-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <mat-select [value]="customerDetails().country" (valueChange)="countryChanged($event)">
+            @for (country of countries; track country) {
+              <mat-option [value]="country">
+                {{ country }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex justify-content-md-end mt-3 ">
+        <button type="submit" class="btn btn-primary"> Submit</button>
+      </div>
+
+    </form>
+
+  </div>
+  <div class="col-12 col-md-6">
+  </div>
+
+</div>

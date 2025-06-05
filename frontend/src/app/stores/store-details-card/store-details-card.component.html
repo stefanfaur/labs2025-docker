@@ -1,0 +1,9 @@
+<div class="card shadow-sm">
+  <img [src]="store().imageUrl" alt="Pizza Store Cover" class="card-img-top img-fluid" />
+
+  <div class="card-body">
+    <h3 class="card-title">{{ store().name }}</h3>
+    <p class="card-text">{{ store().description }}</p>
+    <p class="text-muted">{{ store().address }}</p>
+  </div>
+</div>

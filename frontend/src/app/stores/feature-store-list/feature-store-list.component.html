@@ -1,0 +1,12 @@
+<div id="stores" class="container my-5">
+
+  <h2> Our Stores </h2>
+
+  <div class="d-flex flex-wrap">
+    @for (store of stores(); track store.name) {
+      <div class="m-2" style="width: 60%" (click)="goToDetails(store)">
+        <app-store-list-entry [store]="store"> </app-store-list-entry>
+      </div>
+    }
+  </div>
+</div>

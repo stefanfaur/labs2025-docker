@@ -1,0 +1,12 @@
+<div>
+  <div class="ratingBox d-inline-flex flex-row card border-0 p-2 w-auto">
+    <div
+      *ngFor="let _ of peppers; let i = index"
+      (click)="onClick(i + 1)"
+      [style]="hotness() > i
+               ? 'filter: none; opacity: 1'
+               : 'filter: grayscale(100%) brightness(90%); opacity: 0.3'">
+      🌶️
+    </div>
+  </div>
+</div>

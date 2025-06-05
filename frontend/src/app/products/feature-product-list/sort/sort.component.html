@@ -1,0 +1,26 @@
+<!-- sort.component.html -->
+<div class="sort-selector">
+  <mat-form-field appearance="outline" class="sort-field" >
+    <mat-label>Sort by</mat-label>
+    <mat-select
+      [value]="sortConfig().field"
+      (selectionChange)="sortFieldChange($event.value)"
+      disableRipple
+    >
+      <mat-option *ngFor="let opt of fields()" [value]="opt.value">
+        {{ opt.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    mat-icon-button
+    class="ms-2"
+    (click)="sortDirectionChange()"
+    [attr.aria-label]="'Sort ' + (sortConfig().direction === 'asc' ? 'descending' : 'ascending')"
+  >
+    <mat-icon>
+      {{ sortConfig().direction === 'asc' ? 'arrow_upward' : 'arrow_downward' }}
+    </mat-icon>
+  </button>
+</div>

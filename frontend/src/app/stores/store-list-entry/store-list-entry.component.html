@@ -1,0 +1,10 @@
+<div class="d-flex align-items-center p-2 border rounded mb-2" style="min-height: 80px;">
+  <img [src]="store().imageUrl"
+       alt="Store image"
+       class="img-thumbnail me-3"
+       style="width: 150px; height: 150px; object-fit: cover;" />
+
+  <div class="fw-bold fs-5 text-truncate">
+    {{ store().name }}
+  </div>
+</div>

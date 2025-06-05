@@ -1,0 +1,10 @@
+<app-header> </app-header>
+<app-feature-pizza-list [pizzas]="pizzas()" (pizzaSelected)="onPizzaSelected($event)" (pizzaDeleted)="onPizzaDeleted($event)"></app-feature-pizza-list>
+<div class="d-flex justify-content-center my-3">
+  <button class="btn btn-primary " (click)="addNewPizza()"> Add new</button>
+</div>
+
+@if (pizza(); as pizza) {
+  <app-pizza-form [pizza]="pizza" (pizzaChanged)="onPizzaChanged($event)"></app-pizza-form>
+}
+<app-feature-hottest-pizza [pizzas]="pizzas()"> </app-feature-hottest-pizza>

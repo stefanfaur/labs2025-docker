@@ -1,0 +1,18 @@
+<form class="example-form">
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput  placeholder="Name" name="name" [ngModel]="filters()['name'].value" (ngModelChange)="onNameChanged($event)"  >
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Description" name="description" [ngModel]="filters()['description'].value" (ngModelChange)="onDescriptionChanged($event)"  >
+  </mat-form-field>
+
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Price</mat-label>
+    <input matInput placeholder="Price" name="price" [ngModel]="filters()['price'].value" (ngModelChange)="onPriceChanged($event)"  >
+  </mat-form-field>
+
+</form>

@@ -1,0 +1,26 @@
+<div class="hottest-section">
+  <div id="hottest" class="container py-5">
+    <h2 class="mb-3"> Hottest Pizzas </h2>
+
+    <div class="d-flex justify-content-between  text-center">
+
+      @for (pizza of hottestPizza(); track pizza.id) {
+        <div class="">
+          <div class="rounded">
+            <img [src]="pizza.imageUrl" [alt]="pizza.name">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">{{ pizza.name }}</h5>
+
+            @for (i of [0, 1, 2, 3, 4, 5]; track i) {
+              @if (i < pizza.hotness) {
+                <span class="gray-scale">🌶️</span>
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

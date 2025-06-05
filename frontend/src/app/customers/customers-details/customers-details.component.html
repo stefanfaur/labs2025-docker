@@ -1,0 +1,13 @@
+<div class="bg-gray-100">
+  <div class="container py-5 ">
+    <div class="d-flex">
+      <h3 class="flex-grow-1"> Customer details </h3>
+      <button (click)="goBack()">Go Back</button>
+    </div>
+
+
+    @if (customerDetails(); as customerDetails) {
+      <app-customer-edit [customerDetails]="customerDetails" (customerChanged)="onCustomerChanged($event)"></app-customer-edit>
+    }
+  </div>
+</div>

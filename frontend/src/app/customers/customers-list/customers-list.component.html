@@ -1,0 +1,47 @@
+<div id="customers" class="container my-5">
+
+  <h2> Our Customers </h2>
+
+  <div class="d-flex flex-wrap">
+    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.firstName }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.lastName }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Age </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.age }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.city }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.country }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="goToDetails(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columns"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[2, 5, 10]"></mat-paginator>
+  </div>
+</div>

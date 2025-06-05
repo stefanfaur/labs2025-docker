@@ -1,0 +1,10 @@
+
+<img [src]="product().imageUrl" class="card-img-top" [alt]="product().title"  (error)="onImgError($event)">
+
+<div class="card-body">
+  <div class="d-flex align-items-center">
+    <h5 class="card-title mb-0">{{ product().title }}</h5>
+  </div>
+  <h2 class="mt-2 text-success"> {{price()}} </h2>
+  <p class="card-text">{{ product().description | pizzaDescription }}</p>
+</div>

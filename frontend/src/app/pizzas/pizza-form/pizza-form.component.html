@@ -1,0 +1,92 @@
+<div class="bg-gray-100">
+  <div class="container py-5 ">
+    <h3> Add pizza </h3>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <form
+          #pizzaForm="ngForm"
+          (ngSubmit)="onSubmit(pizzaForm)"
+          class="mb-xl-5 pb-xl-5"
+        >
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input name="name" type="text" class="form-control" id="name" #nameControl="ngModel" appAutoFocus
+                   [ngModel]="pizza().name" (ngModelChange)="nameChanged($event)" required minlength="5" maxlength="45">
+
+            @if (pizzaForm.submitted && nameControl.errors) {
+              <div class="text-red">
+                {{ nameControl.errors['required'] ? 'Name is required' : '' }}
+                {{ nameControl.errors['minlength'] ? 'Name is too short' : '' }}
+                {{ nameControl.errors['maxlength'] ? 'Name is too long' : '' }}
+              </div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" class="form-control" id="description" rows="3" required minlength="5"
+                      maxlength="255" #descriptionControl="ngModel" [ngModel]="pizza().description"
+                      (ngModelChange)="descriptionChanged($event)"></textarea>
+
+            @if (pizzaForm.submitted && descriptionControl.errors) {
+              <div class="text-red">
+                {{ descriptionControl.errors['required'] ? 'Name is required' : '' }}
+                {{ descriptionControl.errors['minlength'] ? 'Name is too short' : '' }}
+                {{ descriptionControl.errors['maxlength'] ? 'Name is too long' : '' }}
+              </div>`
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input name="price" type="number" class="form-control" id="price" [ngModel]="pizza().price"
+                   (ngModelChange)="priceChanged($event)">
+          </div>
+
+          <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredients</label>
+            <input name="ingredients" type="text" class="form-control" id="ingredients" appIngredientsValidator [ngModel]="ingredients"
+                   (ngModelChange)="ingredientsChanged($event)" #ingredientsControl="ngModel">
+            @if (pizzaForm.submitted && ingredientsControl.errors) {
+              <div class="text-red">
+                {{ ingredientsControl.errors['insufficientLength'] ? 'You must enter at least 3 ingredients.' : '' }}
+                {{ ingredientsControl.errors['hasDuplicates'] ? 'There are duplicate ingredients in the list.' : '' }}
+                {{ ingredientsControl.errors['hasPineapple'] ? 'The pizza cannot contain pineapple!' : '' }}
+                {{ ingredientsControl.errors['hasSpecialChars'] ? 'Special characters are not allowed in ingredients.' : '' }}
+              </div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="hotness" class="form-label">Hotness </label>
+            <app-hotness-rating
+              [ngModel]="pizza().hotness"
+              (ngModelChange)="hotnessChanged($event)"
+              name="hotness">
+            </app-hotness-rating>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" accept="image/*"/>
+          </div>
+
+          @if (pizza().imageUrl) {
+            <img [src]="pizza().imageUrl" alt="Preview" style="max-width: 300px;"/>
+          }
+
+          <div class="d-flex justify-content-md-end mt-3 ">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="col-12 col-md-6">
+      </div>
+
+    </div>
+  </div>
+</div>
