@@ -1,13 +1,14 @@
 import {Injectable, signal} from '@angular/core';
 import {PizzaModel} from './domain/pizza.model';
 import {HttpClient} from '@angular/common/http';
+import {API_BASE_URL} from '../../lib/api-base-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PizzaService {
   private pizzas = signal<PizzaModel[]>([]);
-  private baseUrl = 'http://localhost:8081';
+  private baseUrl = API_BASE_URL;
 
   constructor(private httpClient: HttpClient) {
     this.fetchPizzas();
@@ -57,7 +58,7 @@ export class PizzaService {
 
   saveOrUpdatePizza(pizza: PizzaModel) {
     const backendPizza = this.mapFrontendToBackend(pizza);
-    
+
     // Always use POST now, let the backend decide based on ID presence
     this.httpClient.post(`${this.baseUrl}/pizza`, backendPizza).subscribe(() => this.fetchPizzas());
   }

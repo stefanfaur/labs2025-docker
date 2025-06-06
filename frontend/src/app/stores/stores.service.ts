@@ -2,6 +2,7 @@ import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {StoreModel} from './domain/store.model';
 import {Observable, map} from 'rxjs';
+import {API_BASE_URL} from '../../lib/api-base-url';
 
 interface BackendStore {
   id: number;
@@ -17,7 +18,7 @@ interface BackendStore {
 export class StoresService {
 
   private stores = signal<StoreModel[]>([])
-  private readonly baseUrl = 'http://localhost:8081/stores';
+  private readonly baseUrl = `${API_BASE_URL}/stores`;
 
   constructor(private httpClient: HttpClient) {
     this.fetchStores();

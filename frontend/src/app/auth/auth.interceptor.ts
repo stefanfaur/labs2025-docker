@@ -6,7 +6,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const token = authService.getToken();
 
-  if (token && req.url.includes('localhost:8081')) {
+  if (token && req.url.includes(':8081')) {
     const authReq = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${token}`)
     });
@@ -14,4 +14,4 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   return next(req);
-}; 
+};

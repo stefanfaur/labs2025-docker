@@ -1,6 +1,7 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of, tap} from 'rxjs';
+import {API_BASE_URL} from '../../lib/api-base-url';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import {Observable, of, tap} from 'rxjs';
 export class AuthService {
 
   private httpClient = inject(HttpClient);
-  private baseUrl = 'http://localhost:8081';
+  private baseUrl = API_BASE_URL;
   private tokenKey = 'jwt_token';
   private loggedIn = signal(false);
   private userRole = signal<string | null>(null);

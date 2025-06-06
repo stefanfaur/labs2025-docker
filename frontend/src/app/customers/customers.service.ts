@@ -2,6 +2,7 @@ import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {CustomerModel} from './domain/customer.model';
 import {tap, map} from 'rxjs';
+import {API_BASE_URL} from '../../lib/api-base-url';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {tap, map} from 'rxjs';
 export class CustomersService {
 
   private customers = signal<CustomerModel[]>([]);
-  private baseUrl = 'http://localhost:8081';
+  private baseUrl = API_BASE_URL;
 
   constructor(private httpClient: HttpClient) {
     this.fetchCustomers();

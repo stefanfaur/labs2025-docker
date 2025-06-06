@@ -2,13 +2,14 @@ import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {OrderModel} from './domain/order.model';
 import {AuthService} from '../auth/auth.service';
+import {API_BASE_URL} from '../../lib/api-base-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
   private orders = signal<OrderModel[]>([]);
-  private baseUrl = 'http://localhost:8081';
+  private baseUrl = API_BASE_URL;
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {
     this.fetchOrders();
@@ -55,7 +56,7 @@ export class OrderService {
       customerId: parseInt(customerId),
       pizzaIds: pizzaIds.map(id => parseInt(id))
     };
-    
+
     return this.httpClient.post(`${this.baseUrl}/orders`, request).subscribe(() => {
       this.fetchOrders();
     });
@@ -68,7 +69,7 @@ export class OrderService {
     // Map current user to customer ID (same logic as backend)
     const currentUser = this.getCurrentUsername();
     const customerId = this.mapUsernameToCustomerId(currentUser);
-    
+
     if (!customerId) {
       console.error('Cannot create order: User does not have an associated customer ID');
       return;
@@ -78,7 +79,7 @@ export class OrderService {
       customerId: customerId,
       pizzaIds: [parseInt(pizzaId)]
     };
-    
+
     return this.httpClient.post(`${this.baseUrl}/orders`, request).subscribe({
       next: () => {
         console.log('Order created successfully');
@@ -93,7 +94,7 @@ export class OrderService {
   private getCurrentUsername(): string | null {
     const token = this.authService.getToken();
     if (!token) return null;
-    
+
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return payload.sub; // JWT standard: 'sub' contains the username
@@ -106,8 +107,8 @@ export class OrderService {
     // Same mapping as backend
     switch (username) {
       case 'customer': return 1; // Alice Johnson
-      case 'user': return 2;     // Bob Smith  
+      case 'user': return 2;     // Bob Smith
       default: return null;      // admin and others don't have customer IDs
     }
   }
-} 
+}
