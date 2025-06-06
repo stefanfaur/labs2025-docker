@@ -15,6 +15,8 @@ public interface OrderJPARepository extends JpaRepository<PizzaOrder,Long> {
       """)
     List<PizzaOrder> findOrdersByPizzaName(@Param("pizzaName") String pizzaName);
 
+    List<PizzaOrder> findByCustomerId(Long customerId);
+
     List<OrderVO> findAllProjectedBy();
 
     @Query("""

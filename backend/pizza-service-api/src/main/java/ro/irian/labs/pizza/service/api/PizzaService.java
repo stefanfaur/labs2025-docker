@@ -17,5 +17,11 @@ public interface PizzaService {
 
     Long savePizza(PizzaDTO pizzaDTO);
 
+    Long updatePizza(Long id, PizzaDTO pizzaDTO);
+
+    void deletePizza(Long id);
+
     boolean existsByName(String value);
+
+    boolean isNameUniqueForPizza(Long pizzaId, String name);
 }

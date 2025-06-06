@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2>{{ getTitle() }}</h2>
+  
+  @if (orders().length === 0) {
+    <div class="alert alert-info">
+      No orders found. Please login to view your orders.
+    </div>
+  } @else {
+    <div class="row">
+      @for (order of orders(); track order.id) {
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between">
+              <span>Order #{{ order.id }}</span>
+              <span class="badge" [class]="getStatusClass(order.orderStatus)">
+                {{ order.orderStatus }}
+              </span>
+            </div>
+            <div class="card-body">
+              <p><strong>Customer:</strong> {{ order.customerName }}</p>
+              <p><strong>Date:</strong> {{ order.orderDate | date:'medium' }}</p>
+              <h6>Pizzas:</h6>
+              <ul class="list-unstyled">
+                @for (pizza of order.pizzas; track pizza.id) {
+                  <li class="d-flex justify-content-between">
+                    <span>{{ pizza.name }}</span>
+                    <span>{{ pizza.price }} RON</span>
+                  </li>
+                }
+              </ul>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <strong>Total: {{ getOrderTotal(order) }} RON</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div> 

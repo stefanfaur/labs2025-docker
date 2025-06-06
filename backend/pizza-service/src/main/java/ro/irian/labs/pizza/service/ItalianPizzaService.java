@@ -50,6 +50,10 @@ public class ItalianPizzaService implements PizzaService {
         Pizza pizza = new Pizza();
 
         pizza.setName(pizzaDTO.getName());
+        pizza.setDescription(pizzaDTO.getDescription());
+        pizza.setImageUrl(pizzaDTO.getImageUrl());
+        pizza.setIngredients(pizzaDTO.getIngredients());
+        pizza.setHotness(pizzaDTO.getHotness());
         pizza.setCurrencyValue(new CurrencyValue(pizzaDTO.getPrice(), pizzaDTO.getCurrency()));
 
         save(pizza);
@@ -57,8 +61,43 @@ public class ItalianPizzaService implements PizzaService {
     }
 
     @Override
+    @Transactional
+    public Long updatePizza(Long id, PizzaDTO pizzaDTO) {
+        Pizza pizza = pizzaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pizza not found with id: " + id));
+
+        pizza.setName(pizzaDTO.getName());
+        pizza.setDescription(pizzaDTO.getDescription());
+        pizza.setImageUrl(pizzaDTO.getImageUrl());
+        pizza.setIngredients(pizzaDTO.getIngredients());
+        pizza.setHotness(pizzaDTO.getHotness());
+        pizza.setCurrencyValue(new CurrencyValue(pizzaDTO.getPrice(), pizzaDTO.getCurrency()));
+
+        save(pizza);
+        return pizza.getId();
+    }
+
+    @Override
+    @Transactional
+    public void deletePizza(Long id) {
+        pizzaRepository.deleteById(id);
+    }
+
+    @Override
     public boolean existsByName(String value) {
         return pizzaRepository.existsByName(value);
+    }
+
+    @Override
+    public boolean isNameUniqueForPizza(Long pizzaId, String name) {
+        // If pizzaId is null, it's a new pizza, so just check existence
+        if (pizzaId == null) {
+            return !pizzaRepository.existsByName(name);
+        }
+        
+        // For existing pizza, check if any other pizza has this name
+        return pizzaRepository.findAll().stream()
+                .noneMatch(pizza -> !pizza.getId().equals(pizzaId) && pizza.getName().equals(name));
     }
 
     private void save(Pizza pizza) {

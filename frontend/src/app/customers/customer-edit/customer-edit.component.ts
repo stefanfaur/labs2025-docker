@@ -22,6 +22,7 @@ export class CustomerEditComponent {
 
   customerDetails = model.required<CustomerModel>()
   customerChanged = output<CustomerModel>();
+  isSubmitting = false;
 
   countries = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
@@ -101,8 +102,13 @@ export class CustomerEditComponent {
   });
 
   onSubmit(customerForm: NgForm) {
-    if (customerForm.valid) {
+    if (customerForm.valid && !this.isSubmitting) {
+      this.isSubmitting = true;
       this.customerChanged.emit(this.customerDetails());
+      // Reset loading state after a short delay (will be reset when navigation occurs)
+      setTimeout(() => {
+        this.isSubmitting = false;
+      }, 2000);
     }
   }
 

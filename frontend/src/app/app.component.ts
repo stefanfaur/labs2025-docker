@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {FooterComponent} from './footer/footer.component';
 import {MenuComponent} from './menu/menu.component';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +11,9 @@ import {RouterOutlet} from '@angular/router';
 })
 export class AppComponent {
   title = 'ex_2_1';
+  private router = inject(Router);
+
+  isLoginPage(): boolean {
+    return this.router.url === '/login';
+  }
 }

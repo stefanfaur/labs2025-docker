@@ -1,4 +1,37 @@
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
 .card-img-top {
   object-fit: cover;
-  height: 500px;
+  height: 400px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.card-text {
+  line-height: 1.6;
+}
+
+.fa-map-marker-alt {
+  font-size: 1.1rem;
+}
+
+.card-body {
+  background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
 }

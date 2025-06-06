@@ -55,7 +55,22 @@ public class AmericanPizzaService implements PizzaService {
     }
 
     @Override
+    public Long updatePizza(Long id, PizzaDTO pizzaDTO) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deletePizza(Long id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public boolean existsByName(String value) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean isNameUniqueForPizza(Long pizzaId, String name) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

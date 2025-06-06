@@ -4,7 +4,6 @@ import {PizzaCardComponent} from '../pizza-card/pizza-card.component';
 import {DeleteRedDirective} from '../../common/delete-red.directive';
 import {IfPermissionDirective} from '../../common/if-permission.directive';
 import {AuthService} from '../../auth/auth.service';
-import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-feature-pizza-list',
@@ -20,8 +19,8 @@ export class FeaturePizzaListComponent {
   pizzas = input<PizzaModel[]>([]);
   pizzaSelected = output<PizzaModel>();
   pizzaDeleted = output<PizzaModel>();
+  pizzaOrdered = output<PizzaModel>();
   authService = inject(AuthService)
-  protected readonly onclick = onclick;
 
   editClicked(pizza: PizzaModel) {
     this.pizzaSelected.emit(pizza);
@@ -31,5 +30,7 @@ export class FeaturePizzaListComponent {
     this.pizzaDeleted.emit(pizza);
   }
 
-  protected readonly toSignal = toSignal;
+  orderPizza(pizza: PizzaModel) {
+    this.pizzaOrdered.emit(pizza);
+  }
 }

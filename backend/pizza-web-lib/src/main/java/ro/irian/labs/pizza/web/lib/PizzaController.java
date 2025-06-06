@@ -47,11 +47,34 @@ public class PizzaController {
     @PostMapping
     @Secured("ROLE_ADMIN")
     public ResponseEntity<?> savePizza(@RequestBody @Valid PizzaDTO pizzaDTO) {
-        Long id = pizzaService.savePizza(pizzaDTO);
+        Long id;
+        
+        if (pizzaDTO.getId() != null) {
+            // Update existing pizza
+            id = pizzaService.updatePizza(pizzaDTO.getId(), pizzaDTO);
+        } else {
+            // Create new pizza
+            id = pizzaService.savePizza(pizzaDTO);
+        }
 
         URI location = URI.create("/pizza/" + id);
-
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/{pizzaId}")
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<?> updatePizza(@PathVariable Long pizzaId, @RequestBody @Valid PizzaDTO pizzaDTO) {
+        // Set the ID from path to ensure consistency
+        pizzaDTO.setId(pizzaId);
+        pizzaService.updatePizza(pizzaId, pizzaDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{pizzaId}")
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<?> deletePizza(@PathVariable Long pizzaId) {
+        pizzaService.deletePizza(pizzaId);
+        return ResponseEntity.ok().build();
     }
 
 }

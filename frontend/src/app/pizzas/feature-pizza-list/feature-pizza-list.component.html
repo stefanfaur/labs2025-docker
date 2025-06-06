@@ -10,10 +10,15 @@
         <app-pizza-card [pizza]="pizza"></app-pizza-card>
 
         <div class="p-3">
-          <button class="btn btn-primary mt-3" (click)="editClicked(pizza)">Edit</button>
           <ng-container *appIfPermission>
-            <button class="btn btn-primary mt-3 ms-1" appDeleteRed (click)="deleteClicked(pizza)">Delete</button>
+            <button class="btn btn-primary mt-3" (click)="editClicked(pizza)">Edit</button>
+            <button class="btn btn-danger mt-3 ms-1" appDeleteRed (click)="deleteClicked(pizza)">Delete</button>
           </ng-container>
+          @if (authService.isCustomer()) {
+            <button class="btn btn-success mt-3" (click)="orderPizza(pizza)">
+              <i class="fas fa-shopping-cart"></i> Order
+            </button>
+          }
         </div>
       </div>
 

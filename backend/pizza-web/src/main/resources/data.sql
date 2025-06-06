@@ -10,30 +10,40 @@ INSERT INTO customer (id, name, address) VALUES
                                              (5, 'Eva Thompson',   '654 Cedar Lane');
 
 -- -------------------------------------------------
+-- 1.5) STORES
+-- -------------------------------------------------
+INSERT INTO store (id, name, description, address, image_url) VALUES
+                                                               (1, 'Unirii Store', 'Located in the Unirii Square, the heart of the city', 'Unirii Square, no 15', '/stores/store1.png'),
+                                                               (2, 'Traian Store', 'Located in Traian Square, a new hip location', 'Traian Square, no 29', '/stores/store2.png'),
+                                                               (3, 'Iulius Store', 'Located in the biggest shopping mall of the city', 'Iulius Town, ground floor', '/stores/store3.png');
+
+ALTER TABLE store ALTER COLUMN id RESTART WITH 4;
+
+-- -------------------------------------------------
 -- 2) PIZZAS
 --    20 distinct pizzas, IDs 1–20
 -- -------------------------------------------------
-INSERT INTO pizza (id, name, price, currency) VALUES
-                                                  ( 1,  'Margherita',         7.99,  'RON'),
-                                                  ( 2,  'Funghi',             8.49,  'EUR'),
-                                                  ( 3,  'Diavola',            9.99,  'RON'),
-                                                  ( 4,  'Quattro Formaggi',  11.50,  'EUR'),
-                                                  ( 5,  'Hawaii',            10.00,  'RON'),
-                                                  ( 6,  'Prosciutto',        12.49,  'EUR'),
-                                                  ( 7,  'Capricciosa',       11.20,  'RON'),
-                                                  ( 8,  'Vegetariana',        9.50,  'EUR'),
-                                                  ( 9,  'Calzone',            9.75,  'RON'),
-                                                  (10, 'Bufalina',           11.00,  'EUR'),
-                                                  (11, 'Tonno',              10.75,  'RON'),
-                                                  (12, 'Quattro Stagioni',   12.00,  'EUR'),
-                                                  (13, 'Boscaiola',          11.30,  'RON'),
-                                                  (14, 'Spianata',           10.90,  'EUR'),
-                                                  (15, 'Napoli',              9.80,  'RON'),
-                                                  (16, 'Puttanesca',         10.60,  'EUR'),
-                                                  (17, 'Carbonara',          12.20,  'RON'),
-                                                  (18, 'Siciliana',          11.75,  'EUR'),
-                                                  (19, 'Peperoni',           10.40,  'RON'),
-                                                  (20, 'Mediterranea',       11.90,  'EUR');
+INSERT INTO pizza (id, name, description, image_url, ingredients, hotness, price, currency) VALUES
+                                                  ( 1,  'Margherita',         'Classic pizza with tomato sauce and mozzarella cheese.', '/pizzas/pizza_0_0.png', 'Tomato Sauce,Mozzarella Cheese,Basil', 0, 7.99,  'RON'),
+                                                  ( 2,  'Funghi',             'Mushroom pizza with mozzarella cheese.', '/pizzas/pizza_0_1.png', 'Tomato Sauce,Mozzarella Cheese,Mushrooms', 0, 8.49,  'EUR'),
+                                                  ( 3,  'Diavola',            'Spicy salami pizza with hot peppers.', '/pizzas/pizza_0_2.png', 'Tomato Sauce,Mozzarella Cheese,Spicy Salami,Hot Peppers', 4, 9.99,  'RON'),
+                                                  ( 4,  'Quattro Formaggi',  'Four cheese pizza with mozzarella, gorgonzola, parmesan and ricotta.', '/pizzas/pizza_1_0.png', 'Tomato Sauce,Mozzarella,Gorgonzola,Parmesan,Ricotta', 0, 11.50,  'EUR'),
+                                                  ( 5,  'Hawaii',            'Ham and pineapple on a classic pizza base.', '/pizzas/pizza_1_1.png', 'Tomato Sauce,Mozzarella Cheese,Ham,Pineapple', 1, 10.00,  'RON'),
+                                                  ( 6,  'Prosciutto',        'Prosciutto and arugula pizza.', '/pizzas/pizza_1_2.png', 'Tomato Sauce,Mozzarella Cheese,Prosciutto,Arugula', 0, 12.49,  'EUR'),
+                                                  ( 7,  'Capricciosa',       'Pizza with ham, mushrooms, artichokes and olives.', '/pizzas/pizza_2_0.png', 'Tomato Sauce,Mozzarella Cheese,Ham,Mushrooms,Artichokes,Olives', 0, 11.20,  'RON'),
+                                                  ( 8,  'Vegetariana',        'Loaded with fresh vegetables and mozzarella cheese.', '/pizzas/pizza_2_1.png', 'Tomato Sauce,Mozzarella Cheese,Bell Peppers,Olives,Onions,Zucchini', 0, 9.50,  'EUR'),
+                                                  ( 9,  'Calzone',            'Folded pizza with ricotta, mozzarella and ham.', '/pizzas/pizza_2_2.png', 'Tomato Sauce,Ricotta,Mozzarella Cheese,Ham', 0, 9.75,  'RON'),
+                                                  (10, 'Bufalina',           'Buffalo mozzarella with cherry tomatoes and basil.', '/pizzas/pizza_3_0.png', 'Tomato Sauce,Buffalo Mozzarella,Cherry Tomatoes,Basil', 0, 11.00,  'EUR'),
+                                                  (11, 'Tonno',              'Tuna pizza with onions and capers.', '/pizzas/pizza_3_1.png', 'Tomato Sauce,Mozzarella Cheese,Tuna,Onions,Capers', 0, 10.75,  'RON'),
+                                                  (12, 'Quattro Stagioni',   'Four seasons pizza with different toppings in each quarter.', '/pizzas/pizza_3_2.png', 'Tomato Sauce,Mozzarella Cheese,Ham,Mushrooms,Artichokes,Olives', 0, 12.00,  'EUR'),
+                                                  (13, 'Boscaiola',          'Mushroom and sausage pizza.', '/pizzas/pizza_4_0.png', 'Tomato Sauce,Mozzarella Cheese,Mushrooms,Sausage', 2, 11.30,  'RON'),
+                                                  (14, 'Spianata',           'Spicy salami pizza with hot peppers.', '/pizzas/pizza_4_1.png', 'Tomato Sauce,Mozzarella Cheese,Spicy Salami,Hot Peppers', 3, 10.90,  'EUR'),
+                                                  (15, 'Napoli',              'Neapolitan pizza with anchovies and capers.', '/pizzas/pizza_4_2.png', 'Tomato Sauce,Mozzarella Cheese,Anchovies,Capers,Oregano', 1, 9.80,  'RON'),
+                                                  (16, 'Puttanesca',         'Pizza with olives, capers, anchovies and tomatoes.', '/pizzas/pizza_5_0.png', 'Tomato Sauce,Mozzarella Cheese,Olives,Capers,Anchovies,Cherry Tomatoes', 2, 10.60,  'EUR'),
+                                                  (17, 'Carbonara',          'Pizza with eggs, bacon and parmesan.', '/pizzas/pizza_5_1.png', 'White Sauce,Mozzarella Cheese,Eggs,Bacon,Parmesan', 0, 12.20,  'RON'),
+                                                  (18, 'Siciliana',          'Sicilian pizza with eggplant and ricotta.', '/pizzas/pizza_5_2.png', 'Tomato Sauce,Mozzarella Cheese,Eggplant,Ricotta,Basil', 0, 11.75,  'EUR'),
+                                                  (19, 'Peperoni',           'Spicy pepperoni with mozzarella cheese and tomato sauce.', '/pizzas/pizza_6_0.png', 'Tomato Sauce,Mozzarella Cheese,Pepperoni', 4, 10.40,  'RON'),
+                                                  (20, 'Mediterranea',       'Mediterranean pizza with olives, sun-dried tomatoes and feta.', '/pizzas/pizza_6_1.png', 'Tomato Sauce,Mozzarella Cheese,Olives,Sun-dried Tomatoes,Feta Cheese', 0, 11.90,  'EUR');
 
 ALTER TABLE pizza ALTER COLUMN id RESTART WITH 21;
 
@@ -52,6 +62,8 @@ INSERT INTO pizza_orders (id, customer_id, order_date,      order_status) VALUES
                                                                               ( 8, 2, '2025-05-25 10:05:00', 'COMPLETED'),
                                                                               ( 9, 1, '2025-05-25 17:50:00', 'IN_DELIVERY'),
                                                                               (10, 3, '2025-05-26 09:15:00', 'CREATED');
+
+ALTER TABLE pizza_orders ALTER COLUMN id RESTART WITH 11;
 
 -- -------------------------------------------------
 -- 4) ORDER–PIZZA LINKS

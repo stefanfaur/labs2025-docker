@@ -12,6 +12,7 @@ import {HeaderModel} from './domain/header.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
+
   header1 = signal<HeaderModel>({
     title: "Awesome Pizza",
     description: "Experience the irresistible flavor of Awesome Pizza! Our expertly crafted dough is hand-tossed to perfection and topped with the finest ingredients—rich tomato sauce, melted cheese, and a carefully selected mix of savory toppings. ",

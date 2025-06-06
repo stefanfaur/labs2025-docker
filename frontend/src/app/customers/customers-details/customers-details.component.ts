@@ -32,7 +32,15 @@ export class CustomersDetailsComponent {
   }
 
   onCustomerChanged($event: CustomerModel) {
-    this.customersService.saveOrUpdateCustomer($event).subscribe(customer => this.customerDetails.set(customer))
+    this.customersService.saveOrUpdateCustomer($event).subscribe({
+      next: (customer) => {
+        this.customerDetails.set(customer);
+        this.router.navigate(['customers']);
+      },
+      error: (error) => {
+        console.error('Error saving customer:', error);
+      }
+    });
   }
 
   goBack(){

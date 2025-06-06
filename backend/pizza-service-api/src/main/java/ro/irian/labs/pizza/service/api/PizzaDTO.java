@@ -6,16 +6,26 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import ro.irian.labs.pizza.domain.CurrencyType;
 
+@UniqueName
 public class PizzaDTO {
+
+    private Long id;
 
     @NotNull
     @Pattern(regexp = "^[A-Za-z ]+$")
-    @UniqueName
     private String name;
 
+    private String description;
+
+    private String imageUrl;
+
+    private String ingredients;
+
+    private Integer hotness;
+
     @NotNull
-    @Min(10)
-    @Max(100)
+    @Min(0)
+    @Max(1000)
     private Double price;
 
     private CurrencyType currency;
@@ -27,6 +37,25 @@ public class PizzaDTO {
         this.name = name;
         this.price = price;
         this.currency = currency;
+    }
+
+    public PizzaDTO(Long id, String name, String description, String imageUrl, String ingredients, Integer hotness, Double price, CurrencyType currency) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.ingredients = ingredients;
+        this.hotness = hotness;
+        this.price = price;
+        this.currency = currency;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,5 +80,37 @@ public class PizzaDTO {
 
     public void setCurrency(CurrencyType currency) {
         this.currency = currency;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Integer getHotness() {
+        return hotness;
+    }
+
+    public void setHotness(Integer hotness) {
+        this.hotness = hotness;
     }
 }
