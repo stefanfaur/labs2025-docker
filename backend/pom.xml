@@ -12,8 +12,8 @@
     <artifactId>labs-2025-pizza-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Irian LABS 2025 Pizza App</name>
-    <description>Irian LABS 2025 Pizza App</description>
+    <name>Irian-LABS-2025-Pizza-App-Parent</name>
+    <description>Irian-LABS-2025-Pizza-App-Parent</description>
     <url/>
     <licenses>
         <license/>
@@ -90,14 +90,5 @@
     <dependencies>
 
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
