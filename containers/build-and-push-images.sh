@@ -4,20 +4,21 @@
 
 # create a new builder instance
 # this is needed to build multi-arch images
-# this makes sure that the images can run on both amd64 and arm64 architectures
+# this makes sure that the images can run on both amd64 architecture
+# which we're using on AWS
 docker buildx create --name multiarch-builder --use
 
 docker buildx build \
-  --platform linux/amd64,linux/arm64 \
-  --tag sfaur/labs-pizza-backend:latest:latest \
+  --platform linux/amd64\
+  --tag sfaur/labs-pizza-backend:latest \
   --push \
   ../backend
 
 docker buildx build \
-  --platform linux/amd64,linux/arm64 \
+  --platform linux/amd64 \
   --tag sfaur/labs-pizza-frontend:latest \
   --push \
-  ../backend
+  ../frontend
 
 # ------------------------------------------------------------------------------
 ## USE THIS IF YOU ARE WORKING ON AN AMD64 MACHINE(pretty much everything else)
