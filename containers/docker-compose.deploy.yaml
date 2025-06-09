@@ -1,0 +1,58 @@
+# list of services(containers) we want to run
+services:
+
+  # name of our service(can be different from container_name)
+  # used for referring to the service inside compose file and in the network
+  my-postgres:
+    # the image to use
+    image: postgres:latest
+    # actual container name
+    container_name: my-postgres
+    # environment variables config
+    environment:
+      POSTGRES_PASSWORD: irian25
+    # ports to expose
+    ports:
+      - "5432:5432"
+    # volumes to mount in the container
+    volumes:
+      # in './<path>', the dot '.' is the current directory
+      # aka where the compose file is being run from
+      - ./pgdata:/var/lib/postgresql/data
+    # add the DB to the network
+    networks:
+      - pizza-net
+
+  my-backend:
+    image: sfaur/labs-pizza-backend:latest
+    container_name: my-backend
+    ports:
+      - "8081:8081"
+    # add our backend to the network
+    networks:
+      - pizza-net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://my-postgres:5432/postgres
+    # restart if failing to start
+    # this can happen if DB is not ready yet
+    restart: unless-stopped
+    volumes:
+      # so app can see it's config files
+      - ./config:/config
+      # so we can see the app's logs
+      - ./logs:/app/logs
+
+  my-frontend:
+    image: sfaur/labs-pizza-frontend:latest
+    container_name: my-frontend
+    ports:
+      - "80:80"
+    networks:
+      - pizza-net
+    restart: unless-stopped
+
+# declare the network to be created
+# otherwise docker creates a default network
+networks:
+  pizza-net:
+    driver: bridge
